@@ -3,7 +3,30 @@
   margin: 0;
 }
 
+body {
+  background-color: rgb(37, 37, 37);
+  max-width: 1150px;
+  margin: 0 auto;
+}
+
 h1 {
+  font-family: "Berkshire Swash", cursive;
+  font-size: 3em;
+  text-decoration: underline;
+  padding: 0.2em 0em 0.4em 0em;
+  text-align: center;
+  color: rgb(255, 247, 247);
+}
+
+h2 {
+  font-family: "Berkshire Swash", cursive;
+  font-size: 1.2em;
+  padding-bottom: 1em;
+}
+
+p {
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.3em;
 }
 
 #shadow_Image {
@@ -20,8 +43,8 @@ path {
 }
 
 p {
-  font-size: 25px;
-  font-weight: 600;
+  font-size: 1em;
+  font-weight: 400;
 }
 
 .color_btn {
@@ -43,11 +66,18 @@ p {
   gap: 1em;
 }
 
-#color_btns {
+/* #welcome {
   box-shadow: 3px 3px 8px #ddd;
+  text-align: center;
+  padding: 0.5em 0em 1.5em 0em;
+  margin: 0.8em 0em 0.8em 0em;
   border-radius: 1em;
   position: relative;
   transition: opacity ease-in 0.5s;
+  background-color: rgb(255, 247, 247);
+} */
+
+#color_btns {
   z-index: 1;
   pointer-events: all;
   display: flex;
@@ -55,8 +85,7 @@ p {
   flex-wrap: wrap;
   gap: 0.75rem;
   justify-content: center;
-  padding: 1em;
-  margin-bottom: 0.8em;
+  width: 150px;
 }
 
 #product-preview {
@@ -67,6 +96,7 @@ p {
   transition: opacity ease-in 0.5s;
   z-index: 1;
   pointer-events: none;
+  background-color: rgb(255, 247, 247);
 }
 
 #product-preview img {
@@ -97,14 +127,13 @@ p {
 
 #options {
   grid-area: options;
-  box-shadow: 3px 3px 8px #ddd;
+  box-shadow: 3px 3px 8px rgb(0, 0, 0);
   border-radius: 1em;
   padding: 1em;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  font-size: 25px;
-  font-weight: 600;
+  background-color: rgb(255, 247, 247);
 }
 
 #options .option {
@@ -113,6 +142,7 @@ p {
   align-items: center;
   gap: 1em;
   color: #aaa;
+  padding-bottom: 1.5em;
 }
 
 #options .option:hover {
@@ -136,10 +166,12 @@ p {
 
 #selected {
   grid-area: features;
-  color: rgb(163, 117, 57);
-  font-family: "Moonflower";
   font-size: 25px;
   font-weight: 600;
+  background-color: rgb(255, 247, 247);
+  box-shadow: 3px 3px 8px rgb(0, 0, 0);
+  border-radius: 1em;
+  padding: 1em;
 }
 
 #selected ul {
