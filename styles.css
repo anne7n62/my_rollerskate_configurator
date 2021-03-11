@@ -1,27 +1,72 @@
+* {
+  border-box: none;
+  margin: 0;
+}
+
+h1 {
+}
+
+#shadow_Image {
+  pointer-events: none;
+}
+
+.colorize {
+  fill: transparent;
+  cursor: pointer;
+}
+
+path {
+  stroke-width: 2;
+}
+
+p {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.color_btn {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1;
+  pointer-events: all;
+  display: inline-block;
+}
+
 #configurator {
   display: grid;
   grid-template-areas:
-    "color color"
-    "product wheel"
-    "features features";
+    "product options"
+    "features features"
+    "color color";
   gap: 1em;
 }
 
-#rollerskate {
-  grid-area: product;
+#color_btns {
   box-shadow: 3px 3px 8px #ddd;
   border-radius: 1em;
   position: relative;
   transition: opacity ease-in 0.5s;
+  z-index: 1;
+  pointer-events: all;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  padding: 1em;
+  margin-bottom: 0.8em;
 }
 
-/********preview********/
 #product-preview {
   grid-area: product;
   box-shadow: 3px 3px 8px #ddd;
   border-radius: 1em;
   position: relative;
   transition: opacity ease-in 0.5s;
+  z-index: 1;
+  pointer-events: none;
 }
 
 #product-preview img {
@@ -32,6 +77,16 @@
   left: 0;
 }
 
+#product-preview svg {
+  pointer-events: none;
+  z-index: 2;
+}
+
+#product-preview g {
+  z-index: 3;
+  pointer-events: all;
+}
+
 #product-preview .hide {
   opacity: 0;
 }
@@ -40,40 +95,19 @@
   position: relative;
 }
 
-/*********options******/
-
 #options {
-  grid-area: color;
+  grid-area: options;
   box-shadow: 3px 3px 8px #ddd;
   border-radius: 1em;
   padding: 1em;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  font-size: 25px;
+  font-weight: 600;
 }
 
-#options .color_btn {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1em;
-  color: #aaa;
-  cursor: pointer;
-}
-
-/****************/
-
-#wheeloptions {
-  grid-area: wheel;
-  box-shadow: 3px 3px 8px #ddd;
-  border-radius: 1em;
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-#wheeloptions .option {
+#options .option {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -81,32 +115,31 @@
   color: #aaa;
 }
 
-#wheeloptions .option:hover {
-  background-color: rgb(255, 220, 220);
+#options .option:hover {
+  background-color: #ddd;
   cursor: pointer;
 }
 
-#wheeloptions .option.chosen {
+#options .option.chosen {
   text-decoration: underline;
   color: #000;
 }
 
-#wheeloptions .option img {
-  width: 7vw;
+#options .option img {
+  width: 4vw;
   height: auto;
 }
 
-#wheeloptions .option figure {
-  width: 7vw;
+#options .option figcaption {
+  font-size: 20px;
 }
 
-#wheeloptions .option figcaption {
-  font-size: 15px;
-}
-
-/************SELECTED**************/
 #selected {
   grid-area: features;
+  color: rgb(163, 117, 57);
+  font-family: "Moonflower";
+  font-size: 25px;
+  font-weight: 600;
 }
 
 #selected ul {
@@ -121,27 +154,16 @@
   width: 3em;
 }
 
-/****************************/
-
-.colorize {
-  fill: transparent;
-}
-
-#shadow_Image {
-  pointer-events: none;
-}
-
-path {
-  stroke-width: 1;
-}
-
-/*******animations*******/
+/* Animation classes */
 
 .animate-feature-in {
-  animation: add 1 1s;
+  /* TODO: Create animation for adding a feature */
+  animation-name: move_in;
+  animation-iteration-count: 1;
+  animation-duration: 2s;
 }
 
-@keyframes add {
+@keyframes move_in {
   0% {
     transform: translate(var(--diffx), var(--diffy)) scale(0);
   }
@@ -152,10 +174,14 @@ path {
 }
 
 .animate-feature-out {
-  animation: remove 1 1.5s reverse;
+  animation-name: move_out;
+  animation-iteration-count: 1;
+  animation-duration: 1s;
+  animation-direction: reverse;
+  /* TODO: Create animation for removing a feature */
 }
 
-@keyframes remove {
+@keyframes move_out {
   0% {
     transform: translate(var(--diffx), var(--diffy)) scale(0);
   }

@@ -1,34 +1,36 @@
-document.addEventListener("DOMContentLoaded", init);
+"use strict";
+
+document.addEventListener("DOMContentLoaded", start);
+console.log("DOMContentLoaded");
+
+// The model of all features
+const features = {
+  sunglasses: false,
+  bow: false,
+  heart: false,
+  mustache: false,
+};
 
 let elementToPaint;
 
-//the model feautures
-const features = {
-  blue: false,
-  pink: false,
-};
-
-async function init() {
+async function start() {
   let response = await fetch("rollerskate-01.svg");
   let mySvgData = await response.text();
   document.querySelector("#rollerskate").innerHTML = mySvgData;
-
-  // register toggle-clicks for wheel options
+  // register toggle-clicks
   document.querySelectorAll(".option").forEach((option) => option.addEventListener("click", toggleOption));
-
-  startColorChange();
+  addUserInteraction();
 }
 
-function startColorChange() {
-  console.log("start color changes");
-  document.querySelectorAll(".colorize").forEach((cap) => {
-    cap.addEventListener("click", the_click);
-    cap.addEventListener("mouseover", the_mouseover);
-    cap.addEventListener("mouseout", the_mouseout);
+function addUserInteraction() {
+  document.querySelectorAll(".colorize").forEach((eachG) => {
+    console.log(eachG);
+    eachG.addEventListener("click", the_click);
+    eachG.addEventListener("mouseover", the_mouseover);
+    eachG.addEventListener("mouseout", the_mouseout);
   });
-
-  document.querySelectorAll(".color_btn").forEach((btn) => {
-    btn.addEventListener("click", color_click);
+  document.querySelectorAll(".color_btn").forEach((each_BTN) => {
+    each_BTN.addEventListener("click", color_click);
   });
 }
 
@@ -40,78 +42,77 @@ function the_click() {
 function the_mouseover() {
   console.log(this);
 
-  this.style.stroke = "blue";
+  this.style.stroke = "orange";
 }
 
 function the_mouseout() {
-  console.log(this);
-
   this.style.stroke = "none";
 }
 
 function color_click() {
-  console.log("KLIk", this.getAttribute("fill"));
+  console.log("Click", this.getAttribute("fill"));
   if (elementToPaint != undefined) {
     elementToPaint.style.fill = this.getAttribute("fill");
   }
 }
 
 function toggleOption(event) {
-  const target = event.currentTarget; //referer til det element, der har været mål for eventet
+  const target = event.currentTarget;
   const feature = target.dataset.feature;
 
-  // Toggle feature in "model" (NOT operator, toggler true/false)
+  // TODO: Toggle feature in "model"
   features[feature] = !features[feature];
 
-  if (features[feature]) {
-    //feature added
-    console.log(`Feature ${feature} is turned on!`);
-
-    // Adding class chosen to the target / underlines chosen
+  // If feature is (now) turned on:
+  if (features[feature] === true) {
+    // - mark target as chosen (add class "chosen")
     target.classList.add("chosen");
-
-    // Shows the feature image by removing hide class
+    // - un-hide the feature-layer(s) in the #product-preview;
     document.querySelector(`[data-feature="${feature}"`).classList.remove("hide");
-    // Adds the chosen feature element in ul
-    const featureElementLi = createFeatureElement(feature);
-    document.querySelector("#selected ul").appendChild(featureElementLi);
+    // - create featureElement and append to #selected ul
+    const newElm = createFeatureElement(feature);
+    document.querySelector("#selected ul").appendChild(newElm);
+    // feature added
 
-    // Set start and endpoints for animation
+    // - create FLIP-animation to animate featureElement from img in target, to
+    //   its intended position. Do it with normal animation or transition class!
+
+    // Else - if the feature (became) turned off:
+    // - find the existing featureElement in #selected ul
+    // - create FLIP-animation to animate featureElement to img in target
+    // - when animation is complete, remove featureElement from the DOM
+
     const start = target.getBoundingClientRect();
-    const end = featureElementLi.getBoundingClientRect();
+    const end = newElm.getBoundingClientRect();
 
     const diffx = start.x - end.x + "px";
     const diffy = start.y - end.y + "px";
 
-    featureElementLi.style.setProperty("--diffx", diffx);
-    featureElementLi.style.setProperty("--diffy", diffy);
+    newElm.style.setProperty("--diffx", diffx);
+    newElm.style.setProperty("--diffy", diffy);
 
-    // Add add class when turning feature on
-    featureElementLi.classList = "animate-feature-in";
-  } else {
-    // Remove underline and color, unchoose feature
+    newElm.classList = "animate-feature-in";
+  }
+  // TODO: More code
+  else {
     target.classList.remove("chosen");
+    const theElm = document.querySelector(`#selected [data-feature="${feature}"]`);
 
-    const theFeaturedElement = document.querySelector(`#selected [data-feature="${feature}"]`);
-
-    // Set start and endpoints for animation
-    const end = theFeaturedElement.getBoundingClientRect();
+    const end = theElm.getBoundingClientRect();
     const start = target.getBoundingClientRect();
 
     const diffx = start.x - end.x + "px";
     const diffy = start.y - end.y + "px";
 
-    theFeaturedElement.style.setProperty("--diffx", diffx);
-    theFeaturedElement.style.setProperty("--diffy", diffy);
+    theElm.style.setProperty("--diffx", diffx);
+    theElm.style.setProperty("--diffy", diffy);
 
-    theFeaturedElement.offsetHeight;
+    theElm.offsetHeight;
 
-    // Add remove class when turning feature off
-    theFeaturedElement.classList = "animate-feature-out";
+    theElm.classList = "animate-feature-out";
 
-    // When remove animation is over, remove from list and hide image
-    theFeaturedElement.addEventListener("animationend", function () {
-      theFeaturedElement.remove();
+    theElm.addEventListener("animationend", function () {
+      theElm.remove();
       document.querySelector(`[data-feature=${feature}`).classList.add("hide");
       console.log(`Feature ${feature} is turned off!`);
     });
@@ -120,7 +121,6 @@ function toggleOption(event) {
 
 // Create featureElement to be appended to #selected ul - could have used a <template> instead
 function createFeatureElement(feature) {
-  //create an li element and add feature img into it
   const li = document.createElement("li");
   li.dataset.feature = feature;
 

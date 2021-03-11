@@ -4,62 +4,60 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Custom Rollerskates</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Open+Sans&display=swap" rel="stylesheet"> 
+    <title>Rollerskate Configurator</title>
   </head>
   <body>
-    <h1>Customisable Rollerskates</h1>
-    <p>
-      Your special rollerskater!<br />
-      Please select the features and colors you want on your skates.
-    </p>
-    <div id="options">
-        Please choose colors
-        <svg viewBox="0 0 842 90">
-            <circle class="color_btn" cx="50" cy="50" r="35" fill="#ABDEE6"/>
-            <circle class="color_btn" cx="140" cy="50" r="35" fill="#CBAACB"/>
-            <circle class="color_btn" cx="230" cy="50" r="35" fill="#FFFFB5"/>
-            <circle class="color_btn" cx="320" cy="50" r="35" fill="#F3B0C3"/>
-            <circle class="color_btn" cx="410" cy="50" r="35" fill="#C6DBDA"/>
-            <circle class="color_btn" cx="500" cy="50" r="35" fill="#CCE2B6"/>
-            <circle class="color_btn" cx="590" cy="50" r="35" fill="#ECD5E3"/>
-            <circle class="color_btn" cx="680" cy="50" r="35" fill="#97C1A9"/>
-            <circle class="color_btn" cx="770" cy="50" r="35" fill="#98D1A6"/>
-        </svg>
+ 
+    <div id="color_btns">
+
+      <h1>Customise your rollerskate</h1>
+
+      <p>Click on an area and pick a color below to see the result:</p>
+      
+        <div class="color_btn" style="background-color:#E67A91;" fill="#E67A91";></div>
+        <div class="color_btn" style="background-color:#E3355A;" fill="#E3355A";></div>
+        <div class="color_btn" style="background-color:#E00425;" fill="#E00425";></div>
+        <div class="color_btn" style="background-color:#8FC5FB;" fill="#8FC5FB";></div>
+        <div class="color_btn" style="background-color:#449EFA;" fill="#449EFA";></div>
+        <div class="color_btn" style="background-color:#214E7A;" fill="#214E7A";></div>
+        <div class="color_btn" style="background-color:#FBEFBF;" fill="#FBEFBF";></div>
+        <div class="color_btn" style="background-color:#FADF73;" fill="#FADF73";></div>
+        <div class="color_btn" style="background-color:#FACD2C;" fill="#FACD2C";></div>
     </div>
 
-    <div id="configurator">
-
-        <div id="product-preview">
-            <!-- the feauture image layers --> 
-            <img src="images/roller_tanwheel.png" alt="" class="hide" data-feature="basic"/>
-            <img src="images/roller_pinkwheel.png" alt="" class="hide" data-feature="pink"/>
-            <img src="images/roller_bluewheel.png" alt="" class="hide" data-feature="blue" /> 
-          </div>
-
-    <section id="rollerskate">
     
-    </section>
-
-<div id="wheeloptions">
-    Available wheels
-    <figure class="option" data-feature="tanwheel">
-      <img src="images/feature_tanwheel.png" alt="Tan Wheel" />
-      <figcaption>Tan wheel</figcaption></figure>
-
-      <figure class="option" data-feature="pinkwheel">
-        <img src="images/feature_pinkwheel.png" alt="pink Wheel" />
-        <figcaption>Pink wheel</figcaption></figure>
+    <div id="configurator">
+      <div id="product-preview">
+        <!-- TODO: add all feature image layers -->
+        <div id="rollerskate"></div>
+        <img src="images/tanwheel.png" alt="" class="hide" data-feature="tanwheel"/>
         
-        <figure class="option" data-feature="bluewheel">
-            <img src="images/feature_bluewheel.png" alt="blue wheel" Wheel" />
-            <figcaption>Blue wheel</figcaption>
-    </figure>
-    </div>
+        <img src="images/pinkwheel.png" alt="" class="hide" data-feature="pinkwheel"/>
 
-    <div id="selected">
+        <img src="images/bluewheel.png" alt="" class="hide" data-feature="bluewheel"/>
+      
+
+      </div>
+      <div id="options">
+        Available features
+        <figure class="option" data-feature="tanwheel">
+          <img src="images/feature_tanwheel.png" alt="tan wheel" />
+          <figcaption>Dessert</figcaption>
+        </figure>
+        <figure class="option" data-feature="bluewheel">
+          <img src="images/feature_bluewheel.png" alt="blue wheel"/>
+          <figcaption>Ocean</figcaption>
+        </figure>
+        <figure class="option" data-feature="pinkwheel">
+          <img src="images/feature_pinkwheel.png" alt="pink wheel" />
+          <figcaption>Candyfloss</figcaption>
+        </figure>
+       
+      </div>
+      <div id="selected">
         Selected features
         <ul>
           <!-- featureElements are added here! -->
@@ -67,10 +65,7 @@
       </div>
     </div>
 
-   
-
-
-
+    
     <script src="script.js"></script>
   </body>
 </html>
