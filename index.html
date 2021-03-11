@@ -15,31 +15,60 @@
       Your special rollerskater!<br />
       Please select the features and colors you want on your skates.
     </p>
+    <div id="options">
+        Please choose colors
+        <svg viewBox="0 0 842 90">
+            <circle class="color_btn" cx="50" cy="50" r="35" fill="#ABDEE6"/>
+            <circle class="color_btn" cx="140" cy="50" r="35" fill="#CBAACB"/>
+            <circle class="color_btn" cx="230" cy="50" r="35" fill="#FFFFB5"/>
+            <circle class="color_btn" cx="320" cy="50" r="35" fill="#F3B0C3"/>
+            <circle class="color_btn" cx="410" cy="50" r="35" fill="#C6DBDA"/>
+            <circle class="color_btn" cx="500" cy="50" r="35" fill="#CCE2B6"/>
+            <circle class="color_btn" cx="590" cy="50" r="35" fill="#ECD5E3"/>
+            <circle class="color_btn" cx="680" cy="50" r="35" fill="#97C1A9"/>
+            <circle class="color_btn" cx="770" cy="50" r="35" fill="#98D1A6"/>
+        </svg>
+    </div>
 
     <div id="configurator">
+
+        <div id="product-preview">
+            <!-- the feauture image layers --> 
+            <img src="images/roller_tanwheel.png" alt="" class="hide" data-feature="basic"/>
+            <img src="images/roller_pinkwheel.png" alt="" class="hide" data-feature="pink"/>
+            <img src="images/roller_bluewheel.png" alt="" class="hide" data-feature="blue" /> 
+          </div>
 
     <section id="rollerskate">
     
     </section>
 
-<div id="options">
-    Please choose colors
-    <svg viewBox="0 0 842 100">
-        <circle class="color_btn" cx="50" cy="50" r="25" fill="#ABDEE6"/>
-        <circle class="color_btn" cx="110" cy="50" r="25" fill="#CBAACB"/>
-        <circle class="color_btn" cx="170" cy="50" r="25" fill="#FFFFB5"/>
-        </svg>
-        <svg viewBox="0 0 842 100">
-            <circle class="color_btn" cx="230" cy="50" r="25" fill="#F3B0C3"/>
-            <circle class="color_btn" cx="290" cy="50" r="25" fill="#C6DBDA"/>
-            <circle class="color_btn" cx="350" cy="50" r="25" fill="#CCE2B6"/>
-            </svg>
-            <svg viewBox="0 0 842 100">
-                <circle class="color_btn" cx="410" cy="50" r="25" fill="#ECD5E3"/>
-                <circle class="color_btn" cx="470" cy="50" r="25" fill="#97C1A9"/>
-                <circle class="color_btn" cx="530" cy="50" r="25" fill="#98D1A6"/>
-                </svg>
-</div>
+<div id="wheeloptions">
+    Available wheels
+    <figure class="option" data-feature="tanwheel">
+      <img src="images/feature_tanwheel.png" alt="Tan Wheel" />
+      <figcaption>Tan wheel</figcaption></figure>
+
+      <figure class="option" data-feature="pinkwheel">
+        <img src="images/feature_pinkwheel.png" alt="pink Wheel" />
+        <figcaption>Pink wheel</figcaption></figure>
+        
+        <figure class="option" data-feature="bluewheel">
+            <img src="images/feature_bluewheel.png" alt="blue wheel" Wheel" />
+            <figcaption>Blue wheel</figcaption>
+    </figure>
+    </div>
+
+    <div id="selected">
+        Selected features
+        <ul>
+          <!-- featureElements are added here! -->
+        </ul>
+      </div>
+    </div>
+
+   
+
 
 
     <script src="script.js"></script>

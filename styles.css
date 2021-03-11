@@ -1,7 +1,8 @@
 #configurator {
   display: grid;
   grid-template-areas:
-    "product options"
+    "color color"
+    "product wheel"
     "features features";
   gap: 1em;
 }
@@ -14,8 +15,35 @@
   transition: opacity ease-in 0.5s;
 }
 
+/********preview********/
+#product-preview {
+  grid-area: product;
+  box-shadow: 3px 3px 8px #ddd;
+  border-radius: 1em;
+  position: relative;
+  transition: opacity ease-in 0.5s;
+}
+
+#product-preview img {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  top: 0;
+  left: 0;
+}
+
+#product-preview .hide {
+  opacity: 0;
+}
+
+#product-preview img.basic {
+  position: relative;
+}
+
+/*********options******/
+
 #options {
-  grid-area: options;
+  grid-area: color;
   box-shadow: 3px 3px 8px #ddd;
   border-radius: 1em;
   padding: 1em;
@@ -30,10 +58,70 @@
   align-items: center;
   gap: 1em;
   color: #aaa;
-  cx="50" cy="50" r="25"
+  cursor: pointer;
 }
 
-/***********************/
+/****************/
+
+#wheeloptions {
+  grid-area: wheel;
+  box-shadow: 3px 3px 8px #ddd;
+  border-radius: 1em;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+#wheeloptions .option {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1em;
+  color: #aaa;
+}
+
+#wheeloptions .option:hover {
+  background-color: rgb(255, 220, 220);
+  cursor: pointer;
+}
+
+#wheeloptions .option.chosen {
+  text-decoration: underline;
+  color: #000;
+}
+
+#wheeloptions .option img {
+  width: 7vw;
+  height: auto;
+}
+
+#wheeloptions .option figure {
+  width: 7vw;
+}
+
+#wheeloptions .option figcaption {
+  font-size: 15px;
+}
+
+/************SELECTED**************/
+#selected {
+  grid-area: features;
+}
+
+#selected ul {
+  list-style-type: none;
+}
+
+#selected ul li {
+  display: inline-block;
+}
+
+#selected ul li img {
+  width: 3em;
+}
+
+/****************************/
 
 .colorize {
   fill: transparent;
@@ -45,4 +133,34 @@
 
 path {
   stroke-width: 1;
+}
+
+/*******animations*******/
+
+.animate-feature-in {
+  animation: add 1 1s;
+}
+
+@keyframes add {
+  0% {
+    transform: translate(var(--diffx), var(--diffy)) scale(0);
+  }
+
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+.animate-feature-out {
+  animation: remove 1 1.5s reverse;
+}
+
+@keyframes remove {
+  0% {
+    transform: translate(var(--diffx), var(--diffy)) scale(0);
+  }
+
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
 }
